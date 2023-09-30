@@ -35,7 +35,7 @@ steps:
   inputs:
     command: 'forceunlock'
     allowTelemetryCollection: true
-    lockID: '1a9e5cd6-51bf-7f82-3b2b-3e588435f3ca'
+    lockID: '0ce2b22e-43e9-5cd5-d112-055286db8c73'
 
 - task: TerraformCLI@1
   inputs:
