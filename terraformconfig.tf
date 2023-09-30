@@ -8,5 +8,13 @@ terraform {
 }
 
 provider "azurerm" {
-  location = "West Europe"
+  features {
+    
+  }
+}
+
+terraform {
+    backend "azurerm" {
+      
+    }
 }

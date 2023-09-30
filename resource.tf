@@ -18,13 +18,13 @@ resource "azurerm_kubernetes_cluster" "iaack8" {
 
     admin_username = "ubuntu"
     ssh_key {
-      key_data = 
+      key_data = file(var.ssh_public_key)
     }
   }
 
   service_principal {
-    client_id = ""
-    client_secret = ""
+    client_id = var.client_id
+    client_secret = var.client_secret
   }
 
   tags {
