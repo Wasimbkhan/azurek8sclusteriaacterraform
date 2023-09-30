@@ -33,6 +33,12 @@ steps:
 
 - task: TerraformCLI@1
   inputs:
+    command: 'forceunlock'
+    allowTelemetryCollection: true
+    lockID: '1a9e5cd6-51bf-7f82-3b2b-3e588435f3ca'
+
+- task: TerraformCLI@1
+  inputs:
     command: 'apply'
     environmentServiceName: 'Azure Resource Manager Service Connection'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.securefilepath)'
