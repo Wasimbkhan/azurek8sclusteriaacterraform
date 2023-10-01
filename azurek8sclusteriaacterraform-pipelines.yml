@@ -35,6 +35,8 @@ steps:
   inputs:
     command: 'plan'
     environmentServiceName: 'Azure Resource Manager Service Connection'
+    runAzLogin: true
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.securefilepath)'
     allowTelemetryCollection: true
+    publishPlanResults: 'k8s'
 
