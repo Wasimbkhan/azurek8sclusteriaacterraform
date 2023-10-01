@@ -32,7 +32,7 @@ resource "azurerm_resource_group" "devvm" {
 #   }
 # }
 
-resource "azurerm_virtual_network" "main" {
+resource "azurerm_virtual_network" "devvm" {
   name                = "devvm-network"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.devvm.location
