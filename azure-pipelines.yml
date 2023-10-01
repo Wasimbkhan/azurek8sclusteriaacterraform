@@ -33,6 +33,13 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'validate'
+
+- task: TerraformTaskV4@4
+  name: Plan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
     
 
 
