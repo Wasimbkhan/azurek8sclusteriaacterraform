@@ -27,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "kubertera" {
     client_secret = var.client_secret
   }
 
-  tags {
+   tags = {
     Environment = var.environment
   }
 }
