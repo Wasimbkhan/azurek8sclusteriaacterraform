@@ -39,7 +39,15 @@ steps:
     provider: 'azurerm'
     command: 'plan'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
-    customCommand: terraform force-unlock d48ebe42-4dce-fbf5-53ea-9797e54b16c2
     environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
+
+- task: TerraformTaskV4@4
+  name: Apply
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
+
 
 
