@@ -33,18 +33,13 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'validate'
-
-- task: TerraformCLI@1
-  inputs:
-    command: 'forceunlock'
-    allowTelemetryCollection: true
-    lockID: 'dc42c916-a944-8d09-90e3-474978466f31'
 - task: TerraformTaskV4@4
   name: Plan
   inputs:
     provider: 'azurerm'
     command: 'plan'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    customCommand: terraform force-unlock 
     environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
 
 
