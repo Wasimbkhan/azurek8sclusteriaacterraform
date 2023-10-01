@@ -22,14 +22,6 @@ variable "nodecount" {
   default = 3
 }
 
-# variable "client_id" {
-  
-# }
-
-# variable "client_secret" {
-  
-# }
-
-# variable "ssh_public_key" {
-  
-# }
+variable client_id {}
+variable client_secret {}
+variable ssh_public_key {}
