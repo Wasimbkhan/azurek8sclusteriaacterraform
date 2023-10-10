@@ -16,17 +16,19 @@ steps:
   name: publickey
   inputs:
     secureFile: 'azure_rsa.pub'
-- task: TerraformTaskV4@4
-  name: Init
+- task: TerraformCLI@1
   inputs:
-    provider: 'azurerm'
     command: 'init'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    backendType: 'azurerm'
     backendServiceArm: 'Azure Resource Manager Service Connection'
+    ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
+    backendAzureRmResourceGroupLocation: 'West Europe'
     backendAzureRmStorageAccountName: 'sgaccountkhan10'
     backendAzureRmContainerName: 'sgaccountkhan10container'
     backendAzureRmKey: 'terraform.tfstate'
+    allowTelemetryCollection: true
 
 - task: TerraformTaskV4@4
   name: Validate
