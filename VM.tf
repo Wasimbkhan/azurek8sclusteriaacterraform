@@ -22,15 +22,17 @@ resource "azurerm_virtual_machine" "webserver1" {
     computer_name  = "Webserver1"
     admin_username = "Ubuntu"
     admin_password = "Password1234!"
+
+    custom_data = (
+    <<-EOF
+        #!/bin/bash
+        echo "Hello from user data!" > /tmp/user_data.txt
+    EOF
+    )
   }
   os_profile_linux_config {
     disable_password_authentication = false
   }
-
-  user_data = <<-EOF
-    #!/bin/bash
-    echo "Hello from user data!" > /tmp/user_data.txt
-  EOF
 
   tags = {
     environment = "Dev"

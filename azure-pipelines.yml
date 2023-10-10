@@ -16,7 +16,9 @@ steps:
   name: publickey
   inputs:
     secureFile: 'azure_rsa.pub'
+
 - task: TerraformCLI@1
+  name: Init
   inputs:
     command: 'init'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
@@ -35,6 +37,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'validate'
+    
 - task: TerraformTaskV4@4
   name: Plan
   inputs:
