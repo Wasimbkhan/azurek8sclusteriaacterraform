@@ -37,7 +37,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'validate'
-    
+
 - task: TerraformTaskV4@4
   name: Plan
   inputs:
@@ -54,13 +54,13 @@ steps:
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
 
-# - task: TerraformTaskV4@4
-#   name: Destroy
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'destroy'
-#     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
-#     environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
+- task: TerraformTaskV4@4
+  name: Destroy
+  inputs:
+    provider: 'azurerm'
+    command: 'destroy'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    environmentServiceNameAzureRM: 'Azure Resource Manager Service Connection'
 
 
 
