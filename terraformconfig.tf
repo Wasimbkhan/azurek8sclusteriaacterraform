@@ -15,6 +15,9 @@ provider "azurerm" {
 
 terraform {
     backend "azurerm" {
-      
+      resource_group_name = "terraform-backend-rg"
+      storage_account_name = "sgaccountkhan10"
+      container_name = "sgaccountkhan10container"
+      key = "terraform.tfstate"
     }
 }
