@@ -42,7 +42,7 @@ resource "azurerm_network_interface" "nic1" {
       name = "vm2nicip"
       subnet_id = azurerm_subnet.public_subnet1.id
       private_ip_address_allocation = "Dynamic"
-      public_ip_address_id = azurerm_public_ip.publicip.id
+      public_ip_address_id = azurerm_public_ip.PIPNIC2.id
     }
   }
 
@@ -77,6 +77,14 @@ resource "azurerm_network_interface_security_group_association" "nsg1conwithnic2
 
 resource "azurerm_public_ip" "publicip" {
   name = "publicipaloocation"
+  resource_group_name = azurerm_resource_group.kubertera.name
+  location = azurerm_resource_group.kubertera.location
+  allocation_method = "Static"
+  
+}
+
+resource "azurerm_public_ip" "PIPNIC2" {
+  name = "nic2publicip"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
   allocation_method = "Static"
