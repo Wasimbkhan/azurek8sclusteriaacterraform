@@ -81,6 +81,7 @@ resource "azurerm_public_ip" "PIPNIC1" {
   location = azurerm_resource_group.kubertera.location
   allocation_method = "Static"
   zones = ["1"]
+  sku = "Standard"
 }
 
 resource "azurerm_public_ip" "PIPNIC2" {
@@ -89,4 +90,5 @@ resource "azurerm_public_ip" "PIPNIC2" {
   location = azurerm_resource_group.kubertera.location
   allocation_method = "Static"
   zones = ["2"]
+  sku = "Standard"
 }
