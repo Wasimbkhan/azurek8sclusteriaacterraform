@@ -31,4 +31,3 @@ resource "azurerm_kubernetes_cluster" "kubertera" {
     Environment = var.environment
   }
 }
-
