@@ -22,7 +22,7 @@ resource "azurerm_subnet" "private_subnet1" {
 }
 
 resource "azurerm_network_interface" "nic1" {
-  depends_on = [ azurerm_public_ip.azurerm_public_ip.PIPNIC1 ]
+  depends_on = [ azurerm_public_ip.PIPNIC1 ]
   name = "vm1-nic"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
