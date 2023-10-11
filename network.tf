@@ -88,5 +88,5 @@ resource "azurerm_public_ip" "PIPNIC2" {
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
   allocation_method = "Static"
-  
+  zones = ["2"]
 }

@@ -5,7 +5,7 @@ resource "azurerm_virtual_machine" "webserver1" {
   location              = azurerm_resource_group.kubertera.location
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic1.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s_v2"
 
   storage_image_reference {
     publisher = "Canonical"
@@ -14,7 +14,7 @@ resource "azurerm_virtual_machine" "webserver1" {
     version   = "latest"
   }
   storage_os_disk {
-      name              = "myosdisk1"
+      name              = "webserver1osdisk"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
@@ -51,7 +51,7 @@ resource "azurerm_virtual_machine" "webserver2" {
   location              = azurerm_resource_group.kubertera.location
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic2.id]
-  vm_size               = "Standard_DS1_v2"
+  vm_size               = "Standard_B2s_v2"
 
   storage_image_reference {
     publisher = "Canonical"
@@ -60,14 +60,14 @@ resource "azurerm_virtual_machine" "webserver2" {
     version   = "latest"
   }
   storage_os_disk {
-      name              = "myosdisk1"
+      name              = "webserver2osdisk"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
 
   os_profile {
-    computer_name  = "Webserver1"
+    computer_name  = "Webserver2"
     admin_username = "Ubuntu"
     admin_password = "Password1234!"
 
