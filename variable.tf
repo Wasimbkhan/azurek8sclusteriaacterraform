@@ -7,7 +7,7 @@ variable "environment" {
 }
 
 variable "location" {
-  default = "West Europe"
+  default = "CentralIndia"
 }
 
 variable "aziaack8scluster_name" {
