@@ -1,11 +1,12 @@
-# VM 1 creation in zone 1
+### VM 1 creation in zone 1 ###
+
 resource "azurerm_virtual_machine" "webserver1" {
   depends_on = [ azurerm_network_interface.nic1 ]
   name                  = "webserver1"
   location              = azurerm_resource_group.kubertera.location
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic1.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s"
 
   storage_image_reference {
     publisher = "Canonical"
@@ -44,14 +45,15 @@ resource "azurerm_virtual_machine" "webserver1" {
 
 }
 
-# VM 2 creation in zone 2
+#### VM 2 creation in zone 2 ###
+
 resource "azurerm_virtual_machine" "webserver2" {
   depends_on = [ azurerm_network_interface.nic2 ]
   name                  = "webserver2"
   location              = azurerm_resource_group.kubertera.location
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic2.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = "Standard_B2s"
 
   storage_image_reference {
     publisher = "Canonical"

@@ -22,7 +22,7 @@ resource "azurerm_subnet" "private_subnet1" {
 }
 
 resource "azurerm_network_interface" "nic1" {
-  depends_on = [ azurerm_public_ip.publicip ]
+  depends_on = [ azurerm_public_ip.azurerm_public_ip.PIPNIC1 ]
   name = "vm1-nic"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
@@ -30,11 +30,11 @@ resource "azurerm_network_interface" "nic1" {
     name = "vm1nicip"
     subnet_id = azurerm_subnet.private_subnet1.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.publicip.id
+    public_ip_address_id = azurerm_public_ip.PIPNIC1.id
   }
 }
   resource "azurerm_network_interface" "nic2" {
-    depends_on = [ azurerm_public_ip.publicip ]
+    depends_on = [ azurerm_public_ip.PIPNIC2 ]
     name = "vm2-nic"
     resource_group_name = azurerm_resource_group.kubertera.name
     location = azurerm_resource_group.kubertera.location
@@ -75,12 +75,12 @@ resource "azurerm_network_interface_security_group_association" "nsg1conwithnic2
 }
 
 
-resource "azurerm_public_ip" "publicip" {
+resource "azurerm_public_ip" "PIPNIC1" {
   name = "publicipaloocation"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
   allocation_method = "Static"
-  
+  zones = ["1"]
 }
 
 resource "azurerm_public_ip" "PIPNIC2" {
