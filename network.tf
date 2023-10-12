@@ -26,7 +26,6 @@ resource "azurerm_subnet" "private_subnet1" {
 
 ### Create one NIC for Webserver 1 ###
 resource "azurerm_network_interface" "nic1" {
-  depends_on = [ azurerm_public_ip.PIPNIC1 ]
   name = "vm1-nic"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
@@ -39,7 +38,6 @@ resource "azurerm_network_interface" "nic1" {
 
 ### Create 2nd NIC Card for Webserver 2 ###
   resource "azurerm_network_interface" "nic2" {
-    depends_on = [ azurerm_public_ip.PIPNIC2 ]
     name = "vm2-nic"
     resource_group_name = azurerm_resource_group.kubertera.name
     location = azurerm_resource_group.kubertera.location
@@ -112,6 +110,7 @@ resource "azurerm_public_ip" "lbPIP" {
 
 ### Create Load balancer & assign Public IP ###
 resource "azurerm_lb" "myloadbalancer" {
+  depends_on = [ azurerm_public_ip.lbPIP ]
   name = "myloadbalcner"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
@@ -128,7 +127,7 @@ resource "azurerm_lb_nat_rule" "natruleforRDP" {
   name = "RDP Access"
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
-  protocol = "TCP"
+  protocol = "Tcp"
   frontend_port = 3389
   backend_port = 3389
   frontend_ip_configuration_name = "LBPublicIP"
@@ -139,7 +138,7 @@ resource "azurerm_lb_nat_rule" "natruleforHttp" {
   name = "Http"
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
-  protocol = "TCP"
+  protocol = "Tcp"
   frontend_port = 8080
   backend_port = 8080
   frontend_ip_configuration_name = "LBPublicIP"
@@ -150,7 +149,7 @@ resource "azurerm_lb_nat_rule" "natruleforSSH" {
   name = "SSH"
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
-  protocol = "TCP"
+  protocol = "Tcp"
   frontend_port = 22
   backend_port = 22
   frontend_ip_configuration_name = "LBPublicIP"
