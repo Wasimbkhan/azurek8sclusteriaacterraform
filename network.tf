@@ -77,7 +77,7 @@ resource "azurerm_network_security_group" "nsg1" {
   } 
      security_rule {
     name                       = "RDP"
-    priority                   = 101
+    priority                   = 200
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -124,7 +124,7 @@ resource "azurerm_lb" "myloadbalancer" {
 
 ### Create NAT Rule for LB to route traffic ###
 resource "azurerm_lb_nat_rule" "natruleforRDP" {
-  name = "RDP Access"
+  name = "RDPAccess"
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
   protocol = "Tcp"
