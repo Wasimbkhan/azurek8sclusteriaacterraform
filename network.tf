@@ -128,11 +128,12 @@ resource "azurerm_lb_nat_rule" "natruleforRDP" {
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
   protocol = "Tcp"
-  frontend_port = 3389
+  frontend_port_start = 3389
+  frontend_port_end = 3390
   backend_port = 3389
   frontend_ip_configuration_name = "LBPublicIP"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
-  enable_floating_ip = false
+  
   
 }
 
@@ -141,7 +142,8 @@ resource "azurerm_lb_nat_rule" "natruleforHttp" {
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
   protocol = "Tcp"
-  frontend_port = 8080
+  frontend_port_start = 8080
+  frontend_port_end = 8081
   backend_port = 8080
   frontend_ip_configuration_name = "LBPublicIP"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
@@ -153,7 +155,8 @@ resource "azurerm_lb_nat_rule" "natruleforSSH" {
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
   protocol = "Tcp"
-  frontend_port = 22
+  frontend_port_start = 22
+  frontend_port_end = 23
   backend_port = 22
   frontend_ip_configuration_name = "LBPublicIP"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
