@@ -111,7 +111,7 @@ resource "azurerm_public_ip" "lbPIP" {
 ### Create Load balancer & assign Public IP ###
 resource "azurerm_lb" "myloadbalancer" {
   depends_on = [ azurerm_public_ip.lbPIP ]
-  name = "myloadbalcner"
+  name = "myloadbalancer"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
   sku = "Standard"
@@ -131,6 +131,8 @@ resource "azurerm_lb_nat_rule" "natruleforRDP" {
   frontend_port = 3389
   backend_port = 3389
   frontend_ip_configuration_name = "LBPublicIP"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
+  enable_floating_ip = false
   
 }
 
@@ -142,7 +144,8 @@ resource "azurerm_lb_nat_rule" "natruleforHttp" {
   frontend_port = 8080
   backend_port = 8080
   frontend_ip_configuration_name = "LBPublicIP"
-  
+  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
+  enable_floating_ip = false
 }
 
 resource "azurerm_lb_nat_rule" "natruleforSSH" {
@@ -153,7 +156,8 @@ resource "azurerm_lb_nat_rule" "natruleforSSH" {
   frontend_port = 22
   backend_port = 22
   frontend_ip_configuration_name = "LBPublicIP"
-  
+  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
+  enable_floating_ip = false
 }
 
 ### Create LB backend pool ###

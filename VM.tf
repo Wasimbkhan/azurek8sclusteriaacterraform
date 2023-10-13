@@ -6,7 +6,7 @@ resource "azurerm_virtual_machine" "webserver1" {
   location              = azurerm_resource_group.kubertera.location
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic1.id]
-  vm_size               = "Standard_DS2_v2"
+  vm_size               = "Standard_B1ls"
 
   storage_image_reference {
     publisher = "Canonical"
@@ -53,7 +53,7 @@ resource "azurerm_virtual_machine" "webserver2" {
   location              = azurerm_resource_group.kubertera.location
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic2.id]
-  vm_size               = "Standard_DS2_v2"
+  vm_size               = "Standard_B1ls"
 
   storage_image_reference {
     publisher = "Canonical"
