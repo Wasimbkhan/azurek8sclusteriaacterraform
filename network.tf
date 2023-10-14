@@ -48,7 +48,7 @@ resource "azurerm_network_interface" "nic1" {
     }
   }
 
-### Create Network Security group ###
+### Create Network Security group inbound rule ###
 resource "azurerm_network_security_group" "nsg1" {
   name = "nsg1azdevopskuber"
   resource_group_name = azurerm_resource_group.kubertera.name
@@ -71,21 +71,11 @@ resource "azurerm_network_security_group" "nsg1" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "8080"
+    destination_port_range     = "80"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   } 
-     security_rule {
-    name                       = "RDP"
-    priority                   = 200
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "3389"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  } 
+
 }
 
 ### Associate NIC1 & NIC2 with NSG ###
@@ -134,11 +124,10 @@ resource "azurerm_lb_nat_rule" "natruleforRDP" {
   frontend_ip_configuration_name = "LBPublicIP"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
   
-  
 }
 
 resource "azurerm_lb_nat_rule" "natruleforHttp" {
-  name = "Http"
+  name = "HTTP"
   resource_group_name = azurerm_resource_group.kubertera.name
   loadbalancer_id = azurerm_lb.myloadbalancer.id
   protocol = "Tcp"
@@ -183,6 +172,16 @@ resource "azurerm_network_interface_backend_address_pool_association" "backendpo
   network_interface_id = azurerm_network_interface.nic2.id
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
   ip_configuration_name = "vm2nicip"
+}
+
+resource "azurerm_lb_outbound_rule" "lboutboundrule" {
+  name = "LBOutboundrule"
+  loadbalancer_id = azurerm_lb.myloadbalancer.id
+  protocol = "Tcp"
+  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
+  frontend_ip_configuration {
+    name = "LBPublicIP"
+  }
 }
 
 

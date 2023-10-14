@@ -27,9 +27,10 @@ resource "azurerm_virtual_machine" "webserver1" {
     admin_password = "Password1234!"
 
     custom_data = (
-    <<-EOF
+    <<EOF
         #!/bin/bash
-        echo "Hello from webserver 1" > /tmp/user_data.txt
+        apt update
+        apt install -y nginx
     EOF
     )
   }
@@ -73,12 +74,14 @@ resource "azurerm_virtual_machine" "webserver2" {
     admin_username = "Ubuntu"
     admin_password = "Password1234!"
 
-    custom_data = (
-    <<-EOF
+     custom_data = (
+    <<EOF
         #!/bin/bash
-        echo "Hello from Webserver 2" > /tmp/user_data.txt
+        apt update
+        apt install -y nginx
     EOF
     )
+
   }
   os_profile_linux_config {
     disable_password_authentication = false
@@ -89,5 +92,5 @@ resource "azurerm_virtual_machine" "webserver2" {
   tags = {
     environment = "Dev"
   }
-
+   
 }
