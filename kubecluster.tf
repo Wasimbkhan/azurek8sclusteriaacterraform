@@ -34,6 +34,5 @@ resource "azurerm_kubernetes_cluster" "kubertera" {
 
   network_profile {
     network_plugin = "azure"
-    service_cidr = "10.1.3.0/24"
   }
 }
