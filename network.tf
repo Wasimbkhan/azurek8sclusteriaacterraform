@@ -25,7 +25,7 @@ resource "azurerm_subnet" "Private_subnet2" {
 }
 
 resource "azurerm_subnet" "AKS_subnet" {
-  name = "Private_Subnet2"
+  name = "AKS_Subnet"
   resource_group_name = azurerm_resource_group.kubertera.name
   virtual_network_name = azurerm_virtual_network.myazvnet.name
   address_prefixes = ["10.1.0.0/24"]
@@ -170,6 +170,7 @@ resource "azurerm_lb_rule" "LBinboundrule" {
   frontend_port = 80
   backend_port = 80
   frontend_ip_configuration_name = "LBPublicIP"
+  disable_outbound_snat = true
 }
 
 ### Create LB backend pool ###
