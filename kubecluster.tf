@@ -13,7 +13,7 @@ resource "azurerm_kubernetes_cluster" "kubertera" {
     name       = "default"
     node_count = var.nodecount
     vm_size    = "Standard_D2_v2"
-    vnet_subnet_id = azurerm_subnet.Private_subnet2.id  
+    vnet_subnet_id = azurerm_subnet.AKS_subnet.id
   }
 
   linux_profile {
