@@ -171,6 +171,7 @@ resource "azurerm_lb_rule" "LBinboundrule" {
   backend_port = 80
   frontend_ip_configuration_name = "LBPublicIP"
   disable_outbound_snat = true
+  backend_address_pool_ids = [azurerm_lb_backend_address_pool.lbbackendpool.id]
 }
 
 ### Create LB backend pool ###
