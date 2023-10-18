@@ -41,7 +41,7 @@ resource "azurerm_virtual_machine" "webserver1" {
     disable_password_authentication = true
     ssh_keys {
       key_data = file(var.ssh_public_key)
-      path = "/home/ubuntu/.ssh/authorized_keys"
+      path = "/home/Ubuntu/.ssh/authorized_keys"
     }
   }
 
@@ -94,7 +94,7 @@ resource "azurerm_virtual_machine" "webserver2" {
     disable_password_authentication = true
      ssh_keys {
       key_data = file(var.ssh_public_key)
-      path = "/home/ubuntu/.ssh/authorized_keys"
+      path = "/home/Ubuntu/.ssh/authorized_keys"
     }
   }
 
