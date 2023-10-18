@@ -19,7 +19,7 @@ variable "dns_prefix" {
 }
 
 variable "nodecount" {
-  default = 3
+  default = 2
 }
 
 variable client_id {}

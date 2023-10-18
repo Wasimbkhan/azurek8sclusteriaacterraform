@@ -7,6 +7,8 @@ resource "azurerm_virtual_machine" "webserver1" {
   resource_group_name   = azurerm_resource_group.kubertera.name
   network_interface_ids = [azurerm_network_interface.nic1.id]
   vm_size               = "Standard_B1ls"
+  delete_os_disk_on_termination = true
+  delete_data_disks_on_termination = tr
 
   storage_image_reference {
     publisher = "Canonical"
@@ -23,7 +25,7 @@ resource "azurerm_virtual_machine" "webserver1" {
 
   os_profile {
     computer_name  = "Webserver1"
-    admin_username = "Ubuntu"
+    admin_username = "ubuntu"
     admin_password = "Password1234!"
 
     custom_data = (
@@ -34,8 +36,13 @@ resource "azurerm_virtual_machine" "webserver1" {
     EOF
     )
   }
+
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+    ssh_keys {
+      key_data = file("~/sshkeys/webserver1.pub")
+      path = "/home/ubuntu/.ssh/authorized_keys"
+    }
   }
 
   zones = ["1"]
@@ -84,7 +91,11 @@ resource "azurerm_virtual_machine" "webserver2" {
 
   }
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+     ssh_keys {
+      key_data = file("~/sshkeys/webserver1.pub")
+      path = "/home/ubuntu/.ssh/authorized_keys"
+    }
   }
 
   zones = ["2"]
