@@ -11,7 +11,7 @@ resource "azurerm_subnet" "Private_subnet1" {
   name = "Private_Subnet1"
   resource_group_name = azurerm_resource_group.kubertera.name
   virtual_network_name = azurerm_virtual_network.myazvnet.name
-  address_prefixes = ["10.0.1.0/24"]
+  address_prefixes = ["10.0.3.0/24"]
   
 }
 
@@ -28,7 +28,7 @@ resource "azurerm_subnet" "AKS_subnet" {
   name = "AKS_Subnet"
   resource_group_name = azurerm_resource_group.kubertera.name
   virtual_network_name = azurerm_virtual_network.myazvnet.name
-  address_prefixes = ["10.1.0.0/24"]
+  address_prefixes = ["10.0.1.0/22"]
   
 }
 
