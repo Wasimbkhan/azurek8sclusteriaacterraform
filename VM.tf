@@ -78,7 +78,7 @@ resource "azurerm_virtual_machine" "webserver2" {
 
   os_profile {
     computer_name  = "Webserver2"
-    admin_username = "Ubuntu"
+    admin_username = "ubuntu"
     admin_password = "Password1234!"
 
      custom_data = (
