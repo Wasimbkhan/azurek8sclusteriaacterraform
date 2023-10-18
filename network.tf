@@ -154,7 +154,7 @@ resource "azurerm_lb_nat_rule" "natruleforSSH" {
   loadbalancer_id = azurerm_lb.myloadbalancer.id
   protocol = "Tcp"
   frontend_port_start = 22
-  frontend_port_end = 22
+  frontend_port_end = 23
   backend_port = 22
   frontend_ip_configuration_name = "LBPublicIP"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbackendpool.id
