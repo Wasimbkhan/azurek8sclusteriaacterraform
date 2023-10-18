@@ -31,4 +31,9 @@ resource "azurerm_kubernetes_cluster" "kubertera" {
    tags = {
     Environment = var.environment
   }
+
+  network_profile {
+    network_plugin = "azure"
+    service_cidr = 
+  }
 }
