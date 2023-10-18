@@ -1,7 +1,7 @@
 ### Create Virtual network ###
 resource "azurerm_virtual_network" "myazvnet" {
   name                = var.myvnet
-  address_space       = ["10.0.0.0/24"]
+  address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.kubertera.location
   resource_group_name = azurerm_resource_group.kubertera.name
 }
@@ -11,7 +11,7 @@ resource "azurerm_subnet" "Private_subnet1" {
   name = "Private_Subnet1"
   resource_group_name = azurerm_resource_group.kubertera.name
   virtual_network_name = azurerm_virtual_network.myazvnet.name
-  address_prefixes = ["10.0.1.0/26"]
+  address_prefixes = ["10.0.1.0/24"]
   
 }
 
@@ -20,7 +20,7 @@ resource "azurerm_subnet" "Private_subnet2" {
   name = "Private_Subnet2"
   resource_group_name = azurerm_resource_group.kubertera.name
   virtual_network_name = azurerm_virtual_network.myazvnet.name
-  address_prefixes = ["10.0.2.0/26"]
+  address_prefixes = ["10.0.2.0/24"]
   
 }
 
