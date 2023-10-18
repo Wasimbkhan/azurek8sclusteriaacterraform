@@ -8,7 +8,7 @@ resource "azurerm_virtual_machine" "webserver1" {
   network_interface_ids = [azurerm_network_interface.nic1.id]
   vm_size               = "Standard_B1ls"
   delete_os_disk_on_termination = true
-  delete_data_disks_on_termination = tr
+  delete_data_disks_on_termination = true
 
   storage_image_reference {
     publisher = "Canonical"
@@ -40,7 +40,7 @@ resource "azurerm_virtual_machine" "webserver1" {
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
-      key_data = file("~/sshkeys/webserver1.pub")
+      key_data = file("~/Users/wasimkhan/sshkeys/webserver1.pub")
       path = "/home/ubuntu/.ssh/authorized_keys"
     }
   }
@@ -93,7 +93,7 @@ resource "azurerm_virtual_machine" "webserver2" {
   os_profile_linux_config {
     disable_password_authentication = true
      ssh_keys {
-      key_data = file("~/sshkeys/webserver1.pub")
+      key_data = file("~/Users/wasimkhan/sshkeys/webserver1.pub")
       path = "/home/ubuntu/.ssh/authorized_keys"
     }
   }
