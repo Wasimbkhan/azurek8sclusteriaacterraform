@@ -40,7 +40,7 @@ resource "azurerm_virtual_machine" "webserver1" {
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
-      key_data = file("~/Users/wasimkhan/sshkeys/webserver1.pub")
+      key_data = file("~/wasimkhan/sshkeys/webserver1.pub")
       path = "/home/ubuntu/.ssh/authorized_keys"
     }
   }
@@ -93,7 +93,7 @@ resource "azurerm_virtual_machine" "webserver2" {
   os_profile_linux_config {
     disable_password_authentication = true
      ssh_keys {
-      key_data = file("~/Users/wasimkhan/sshkeys/webserver1.pub")
+      key_data = file("~/wasimkhan/sshkeys/webserver1.pub")
       path = "/home/ubuntu/.ssh/authorized_keys"
     }
   }
