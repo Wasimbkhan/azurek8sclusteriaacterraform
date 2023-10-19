@@ -113,7 +113,7 @@ resource "azurerm_lb" "myloadbalancer" {
   name = "myloadbalancer"
   resource_group_name = azurerm_resource_group.kubertera.name
   location = azurerm_resource_group.kubertera.location
-  sku = "Basic"
+  sku = "Standard"
 
   frontend_ip_configuration {
     name = "LBPublicIP"
