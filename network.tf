@@ -207,16 +207,16 @@ resource "azurerm_lb_outbound_rule" "lboutboundrule" {
 
 ### Create azure firewall ###
 
-resource "azurerm_firewall" "AKSfirewall" {
-  name                = "testfirewall"
-  location            = azurerm_resource_group.kubertera.location
-  resource_group_name = azurerm_resource_group.kubertera.name
-  sku_name            = "AZFW_VNet"
-  sku_tier            = "Standard"
+# resource "azurerm_firewall" "AKSfirewall" {
+#   name                = "testfirewall"
+#   location            = azurerm_resource_group.kubertera.location
+#   resource_group_name = azurerm_resource_group.kubertera.name
+#   sku_name            = "AZFW_VNet"
+#   sku_tier            = "Standard"
 
-  ip_configuration {
-    name                 = "configuration"
-    subnet_id            = 
-    public_ip_address_id = 
-  }
-}
+#   ip_configuration {
+#     name                 = "configuration"
+#     subnet_id            = 
+#     public_ip_address_id = 
+#   }
+# }
