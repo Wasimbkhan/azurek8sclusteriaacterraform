@@ -12,7 +12,7 @@ resource "azurerm_kubernetes_cluster" "kubertera" {
   default_node_pool {
     name       = "default"
     node_count = var.nodecount
-    vm_size    = "Standard_D2_v2"
+    vm_size    = "Standard_B2s"
     vnet_subnet_id = azurerm_subnet.AKS_subnet.id
   }
 

@@ -17,7 +17,7 @@ resource "azurerm_virtual_machine" "webserver1" {
     version   = "latest"
   }
   storage_os_disk {
-      name              = "webserver1osdisk"
+    name              = "webserver1osdisk"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
